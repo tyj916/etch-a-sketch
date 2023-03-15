@@ -22,4 +22,12 @@ function createGridContainer() {
     }
 }
 
+function addHoverEffect() {
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach(gridItem => gridItem.addEventListener('mouseover', e => {
+        e.target.style.backgroundColor = 'black';
+    }));
+}
+
 createGridContainer();
+addHoverEffect();

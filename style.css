@@ -14,8 +14,8 @@ body {
 }
 
 #grid-container {
-    width: 500px;
-    height: 500px;
+    width: 960px;
+    height: 960px;
     display: flex;
     flex-direction: column;
 }
@@ -23,6 +23,8 @@ body {
 #main-container {
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    gap: 18px;
     justify-content: center;
     align-items: center;
 }

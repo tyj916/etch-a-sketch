@@ -4,13 +4,20 @@ body {
 }
 
 .grid-item {
-    width: 10px;
-    height: 10px;
+    flex: 1;
     border: 1px solid black;
 }
 
 .grid-row {
+    flex: 1;
     display: flex;
+}
+
+#grid-container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
 #main-container {

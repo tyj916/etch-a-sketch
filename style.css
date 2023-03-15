@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.grid-item {
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
+}
+
+.grid-row {
+    display: flex;
+}
+
+#main-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

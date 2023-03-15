@@ -1,6 +1,8 @@
 function createGridItem() {
     const gridItem = document.createElement('div');
     gridItem.setAttribute('class', 'grid-item');
+    gridItem.addEventListener('mousedown', setColor);
+    gridItem.addEventListener('mouseover', setColor);
     return gridItem;
 }
 
@@ -22,12 +24,13 @@ function createGridContainer() {
     }
 }
 
-function addHoverEffect() {
-    const gridItems = document.querySelectorAll('.grid-item');
-    gridItems.forEach(gridItem => gridItem.addEventListener('mouseover', e => {
-        e.target.style.backgroundColor = 'black';
-    }));
+function setColor(e) {
+    if (e.type === 'mouseover' && !mouseDown) return;
+    e.target.style.backgroundColor = 'black';
 }
 
 createGridContainer();
-addHoverEffect();
+let mouseDown = 0;
+document.body.onmousedown = () => mouseDown = 1;
+document.body.onmouseup = () => mouseDown = 0;
+document.getElementById('grid-container').addEventListener('dragstart', e => e.preventDefault());

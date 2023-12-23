@@ -3,15 +3,18 @@ function createGrid() {
     grid.classList.add('grid');
 
     let trigger = false;
-    grid.addEventListener('mouseover', e => {
-        if (trigger) {
-            e.target.style.background = 'red';
-        }
+    ['mousedown', 'mouseover'].forEach( event => {
+        grid.addEventListener(event, e => {
+            if (trigger) {
+                e.target.style.background = 'red';
+            }
+        });
     });
-    document.addEventListener('mousedown', () => {
+    const container = document.querySelector("#container");
+    container.addEventListener('mousedown', () => {
         trigger = true;
-    });
-    document.addEventListener('mouseup', () => {
+    }, true);
+    container.addEventListener('mouseup', () => {
         trigger = false;
     });
 

@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.grid-item {
+    flex: 1;
+    border: 1px solid black;
+}
+
+.grid-row {
+    flex: 1;
+    display: flex;
+}
+
+#grid-container {
+    width: 960px;
+    height: 960px;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+}

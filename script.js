@@ -1,23 +1,6 @@
 function createGrid() {
     const grid = document.createElement('div');
     grid.classList.add('grid');
-
-    let trigger = false;
-    ['mousedown', 'mouseover'].forEach( event => {
-        grid.addEventListener(event, e => {
-            if (trigger) {
-                e.target.style.background = 'red';
-            }
-        });
-    });
-    const container = document.querySelector("#container");
-    container.addEventListener('mousedown', () => {
-        trigger = true;
-    }, true);
-    container.addEventListener('mouseup', () => {
-        trigger = false;
-    });
-
     return grid;
 }
 
@@ -33,6 +16,31 @@ function createGridColumn(column) {
     return gridColumn;
 }
 
+function addSketchingEffect() {
+    const grids = document.querySelectorAll('.grid');
+
+    let trigger = false;
+    ['mousedown', 'mouseover'].forEach( event => {
+        grids.forEach(grid => {
+            grid.addEventListener(event, e => {
+                if (trigger) {
+                    e.target.style.background = 'red';
+                }
+            });
+        });
+    });
+    const sketchboard = document.querySelector("#sketchboard");
+    sketchboard.addEventListener('mousedown', () => {
+        trigger = true;
+    }, true);
+    sketchboard.addEventListener('mouseup', () => {
+        trigger = false;
+    });
+    sketchboard.addEventListener('dragstart', e => {
+        e.preventDefault();
+    });
+}
+
 function createSketchboard(row, column) {
     const sketchboard = document.createElement('div');
     sketchboard.id = 'sketchboard';
@@ -41,17 +49,15 @@ function createSketchboard(row, column) {
         const gridColumn = createGridColumn(column);
         sketchboard.appendChild(gridColumn);
     }
-
-    sketchboard.addEventListener('dragstart', e => {
-        e.preventDefault();
-    });
     
     const container = document.querySelector('#container');
     container.appendChild(sketchboard);
+
+    addSketchingEffect();
 }
 
 function resizeSketchboard() {
-    const gridSize = +prompt("Enter new grid size (1 ~ 100):", 16);
+    let gridSize = +prompt("Enter new grid size (1 ~ 100):", 16);
     while (!(gridSize > 0 && gridSize < 101)) {
         alert("Only 1 ~ 100 is allowed.");
         gridSize = +prompt("Enter new grid size (1 ~ 100):", 16);

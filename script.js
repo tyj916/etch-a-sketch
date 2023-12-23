@@ -43,7 +43,8 @@ function createSketchboard(row, column) {
         e.preventDefault();
     });
     
-    return sketchboard;
+    const container = document.querySelector('#container');
+    container.appendChild(sketchboard);
 }
 
 function resizeSketchboard() {
@@ -54,21 +55,18 @@ function resizeSketchboard() {
     }
 
     const container = document.querySelector('#container');
-    const sketchboard = document.querySelector('#sketchboard');
     container.removeChild(sketchboard);
-    const newSketchboard = createSketchboard(gridSize, gridSize);
-    container.appendChild(newSketchboard);
+    createSketchboard(gridSize, gridSize);
 }
 
 function createResizeButton() {
-    const gridSizeButton = document.createElement('button');
-    gridSizeButton.textContent = "Change grid size";
-    gridSizeButton.addEventListener('click', resizeSketchboard);
-    return gridSizeButton;
+    const resizeButton = document.createElement('button');
+    resizeButton.textContent = "Change grid size";
+    resizeButton.addEventListener('click', resizeSketchboard);
+    
+    const container = document.querySelector('#container');
+    container.appendChild(resizeButton);
 }
 
-const container = document.querySelector('#container');
-const resizeButton = createResizeButton();
-const sketchboard = createSketchboard(16, 16);
-container.appendChild(resizeButton);
-container.appendChild(sketchboard);
+createResizeButton();
+createSketchboard(16, 16);

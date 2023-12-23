@@ -4,12 +4,32 @@
     box-sizing: border-box;
 }
 
-.grid {
-    width: 10px;
-    height: 10px;
-    border: solid black 1px;
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    
+}
+
+#sketchboard {
+    width: 360px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
 }
 
 .column {
+    flex: 1;
     display: flex;
 }
+
+.grid {
+    flex: 1;
+    border: solid black 1px;
+}
+

@@ -8,8 +8,7 @@ function createGrid() {
             e.target.style.background = 'red';
         }
     });
-    document.addEventListener('mousedown', e => {
-        e.target.style.background = 'red';
+    document.addEventListener('mousedown', () => {
         trigger = true;
     });
     document.addEventListener('mouseup', () => {
@@ -47,6 +46,29 @@ function createSketchboard(row, column) {
     return sketchboard;
 }
 
+function resizeSketchboard() {
+    const gridSize = +prompt("Enter new grid size (1 ~ 100):", 16);
+    while (!(gridSize > 0 && gridSize < 101)) {
+        alert("Only 1 ~ 100 is allowed.");
+        gridSize = +prompt("Enter new grid size (1 ~ 100):", 16);
+    }
+
+    const container = document.querySelector('#container');
+    const sketchboard = document.querySelector('#sketchboard');
+    container.removeChild(sketchboard);
+    const newSketchboard = createSketchboard(gridSize, gridSize);
+    container.appendChild(newSketchboard);
+}
+
+function createResizeButton() {
+    const gridSizeButton = document.createElement('button');
+    gridSizeButton.textContent = "Change grid size";
+    gridSizeButton.addEventListener('click', resizeSketchboard);
+    return gridSizeButton;
+}
+
 const container = document.querySelector('#container');
+const resizeButton = createResizeButton();
 const sketchboard = createSketchboard(16, 16);
+container.appendChild(resizeButton);
 container.appendChild(sketchboard);
